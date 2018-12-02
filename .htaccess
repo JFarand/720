@@ -1,0 +1,14 @@
+# Enable Rewriting
+
+RewriteEngine On
+
+# Rewrite for HTTPS
+
+
+
+# Rewrite for URL
+
+RewriteBase "/720/"
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/(.*)$ single.php?p=$2 [QSA]
