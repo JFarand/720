@@ -29,10 +29,6 @@ $url .= $_SERVER['SERVER_NAME'];
 $url .= $_SERVER['REQUEST_URI'];
 $_SERVER["baseurl"] = $url;
 
-//WordPress API variables
-if(isset($post['_embedded']['wp:featuredmedia'])){
-	$image = $post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['file'];
-}
 
 
 ?>
@@ -44,10 +40,17 @@ if(isset($post['_embedded']['wp:featuredmedia'])){
 		</header>
 		<section class="cards_home brilliant_bg">
 		<?php foreach($data as $post): ?>
+			<?php //WordPress API variables
+			if(isset($post['_embedded']['wp:featuredmedia'])){
+				$image = $post['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url'];
+			}
+			?>
+
+
 			<div class="card">
 			<ul>
 			<?php if(isset($image)) : ?>
-				<li class="card-component__image"><img src="<?php echo $url."img/".$image;  ?>" alt=""></li>
+				<li class="card-component__image"><img src="<?php echo $image;  ?>" alt=""></li>
 			<?php endif; ?>
 				<li>
 			
